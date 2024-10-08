@@ -35,12 +35,13 @@ def string_animals(data):
             else:
                 type_dog = ""
             output += '<li class="cards__item">'
-            output += f"Name: {name_dog}\n"
-            output += f"Diet: {diet_dog}\n"
-            output += f"Location: {location_dog}\n"
+            output += f'<div class="card__title">{name_dog}</div>'
+            output += '<p class="card__text">'
+            output += f'<strong>Location:</strong> {location_dog}<br/>'
             if len(type_dog) > 0:
-                output += f"Type: {type_dog}\n"
-            output += '</li>'  
+                output+=f'<strong>Type:</strong> {type_dog}<br/>'
+            output += f'<strong>Diet:</strong> {diet_dog}<br/>'
+            output += ' </p></li>'  
         return output 
     except Exception as e:
         print(e)           
