@@ -5,7 +5,7 @@ def main():
     json_file_path = os.path.join('Zootopia', 'animals_data.json')
     html_file_path = os.path.join('Zootopia', 'animals_template.html')
     animals_data = load_data(json_file_path)
-    dog_string = string_animals(animals_data)
+    dog_string = serialize_animals(animals_data)
     html_template = load_html(html_file_path)
     new_html_template = html_template.replace("__REPLACE_ANIMALS_INFO__",dog_string)
     new_html_file_path = os.path.join('Zootopia', 'new_animals_template.html')
@@ -21,7 +21,7 @@ def load_data(file_path):
     except FileNotFoundError as e:
         print(e) 
 
-def string_animals(data):
+def serialize_animals(data):
     ###Creating a string from Dict parameter for animals returning string outpu###
     output =""
     try:
@@ -29,6 +29,7 @@ def string_animals(data):
             name_dog = animal["name"]
             diet_dog = animal["characteristics"]["diet"]
             location_dog = animal["locations"][0]
+            lifespan_dog = animal["characteristics"]["lifespan"]
             
             if "characteristics" in animal and "type" in animal["characteristics"]:
                 type_dog = animal["characteristics"]["type"]
@@ -41,6 +42,7 @@ def string_animals(data):
             if len(type_dog) > 0:
                 output+=f'<strong>Type:</strong> {type_dog}<br/>'
             output += f'<strong>Diet:</strong> {diet_dog}<br/>'
+            output += f'<strong>Lifespan:</strong> {lifespan_dog}<br/>'
             output += ' </p></li>'  
         return output 
     except Exception as e:
